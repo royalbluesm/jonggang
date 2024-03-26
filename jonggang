@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semester End</title>
+<style>
+  body {
+    font-family: 'Montserrat Alternates', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .widget-container {
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #1c6db1;
+    margin-bottom: 10px;
+  }
+
+  .countdown {
+    font-size: 1.5rem;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .unit {
+    background-color: #fff8fb;
+    color: #1c6db1;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 0 5px;
+    width: 80px; 
+    height: 80px; 
+    line-height: 80px;
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap">
+</head>
+<body>
+
+<div class="widget-container">
+  <h1>Semester End</h1>
+  <div class="countdown" id="countdown">
+    <div class="unit" id="days">0 D</div>
+    <div class="unit" id="hours">0 H</div>
+    <div class="unit" id="minutes">0 M</div>
+    <div class="unit" id="seconds">0 S</div>
+  </div>
+</div>
+
+<script>
+  // Set the target date for the countdown (YYYY, MM-1, DD, HH, MM, SS)
+  var targetDate = new Date('2024-12-31T23:59:59').getTime();
+
+  // Update the countdown every second
+  var countdownInterval = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = targetDate - now;
+
+    // Calculate days, hours, minutes, and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the countdown
+    document.getElementById('days').innerHTML = days + " D";
+    document.getElementById('hours').innerHTML = hours + " H";
+    document.getElementById('minutes').innerHTML = minutes + " M";
+    document.getElementById('seconds').innerHTML = seconds + " S";
+
+    // If the countdown is over, display a message
+    if (distance < 0) {
+      clearInterval(countdownInterval);
+      document.getElementById('countdown').innerHTML = "D-day 종료!";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
